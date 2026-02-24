@@ -40,33 +40,64 @@ class _SearchScreenState extends State<SearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: AppConstants.spacingMd),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    textCapitalization: TextCapitalization.words,
-                    textInputAction: TextInputAction.search,
-                    decoration: const InputDecoration(
-                      hintText: "Enter city name...",
-                      prefixIcon: Icon(Icons.location_city_outlined),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(AppConstants.spacingSm),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _controller,
+                        textCapitalization: TextCapitalization.words,
+                        textInputAction: TextInputAction.search,
+                        decoration: const InputDecoration(
+                          hintText: "Enter city name...",
+                          prefixIcon: Icon(Icons.location_city_outlined),
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                        ),
+                        onSubmitted: isLoading
+                            ? null
+                            : (_) => _onSearch(provider),
+                      ),
                     ),
-                    onSubmitted: isLoading ? null : (_) => _onSearch(provider),
-                  ),
+                    const SizedBox(width: AppConstants.spacingSm),
+                    IconButton(
+                      onPressed: isLoading ? null : () => _onSearch(provider),
+                      icon: Icon(
+                        isLoading ? Icons.circle_outlined : Icons.search,
+                        size: AppConstants.iconSm,
+                      ),
+                    ),
+                  ],
                 ),
-                IconButton(
-                  icon: Icon(isLoading ? Icons.circle_outlined : Icons.search),
-                  onPressed: isLoading ? null : () => _onSearch(provider),
-                ),
-              ],
+              ),
             ),
             const SizedBox(height: AppConstants.spacingMd),
             if (provider.status == WeatherStatus.error)
-              Text(
-                provider.errorMessage ?? "Something went wrong",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.error,
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(AppConstants.spacingMd),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.error_outline_rounded,
+                        color: Theme.of(context).colorScheme.error,
+                        size: AppConstants.iconMd,
+                      ),
+                      const SizedBox(width: AppConstants.spacingSm),
+                      Expanded(
+                        child: Text(
+                          provider.errorMessage ?? "Something went wrong",
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
           ],

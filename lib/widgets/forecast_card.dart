@@ -14,45 +14,59 @@ class ForecastCard extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppConstants.spacingXs),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Text(_formatDay(forecast.date), style: textTheme.bodyLarge),
-          ),
-          Expanded(
-            flex: 2,
-            child: Center(
-              child: Image.network(
-                ApiConfig.iconUrl(forecast.iconCode),
-                width: 36,
-                height: 36,
-                errorBuilder: (_, __, ___) =>
-                    const SizedBox(width: 36, height: 36),
-                loadingBuilder: (_, child, progress) => progress == null
-                    ? child
-                    : const SizedBox(width: 36, height: 36),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppConstants.spacingMd,
+          vertical: AppConstants.spacingSm,
+        ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          borderRadius: BorderRadius.circular(AppConstants.radiusMd),
+          border: Border.all(color: Theme.of(context).dividerTheme.color!),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Text(
+                _formatDay(forecast.date),
+                style: textTheme.bodyLarge,
               ),
             ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  '${forecast.maxTemp.round()}°',
-                  style: textTheme.bodyLarge,
+            Expanded(
+              flex: 2,
+              child: Center(
+                child: Image.network(
+                  ApiConfig.iconUrl(forecast.iconCode),
+                  width: 36,
+                  height: 36,
+                  errorBuilder: (_, __, ___) =>
+                      const SizedBox(width: 36, height: 36),
+                  loadingBuilder: (_, child, progress) => progress == null
+                      ? child
+                      : const SizedBox(width: 36, height: 36),
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  '${forecast.minTemp.round()}°',
-                  style: textTheme.bodyLarge,
-                ),
-              ],
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    '${forecast.maxTemp.round()}°',
+                    style: textTheme.bodyLarge,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    '${forecast.minTemp.round()}°',
+                    style: textTheme.bodyLarge,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
