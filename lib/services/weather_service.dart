@@ -11,13 +11,15 @@ class WeatherService {
     double lat,
     double lon,
   ) async {
-    final url = ApiConfig.currentWeatherByCoords(lat, lon);
+    final url =
+        '${ApiConfig.baseUrl}/weather?lat=$lat&lon=$lon&appid=${ApiConfig.apiKey}&units=metric';
     final response = await _get(url);
     return CurrentWeatherModel.fromJson(response);
   }
 
   Future<CurrentWeatherModel> getCurrentWeatherByCity(String city) async {
-    final url = ApiConfig.currentWeatherByCity(city);
+    final url =
+        '${ApiConfig.baseUrl}/weather?q=${Uri.encodeComponent(city)}&appid=${ApiConfig.apiKey}&units=metric';
     final response = await _get(url, cityName: city);
     return CurrentWeatherModel.fromJson(response);
   }
@@ -26,13 +28,15 @@ class WeatherService {
     double lat,
     double lon,
   ) async {
-    final url = ApiConfig.forecastByCoords(lat, lon);
+    final url =
+        '${ApiConfig.baseUrl}/forecast?lat=$lat&lon=$lon&appid=${ApiConfig.apiKey}&units=metric';
     final response = await _get(url);
     return _parseForecast(response);
   }
 
   Future<List<ForecastDayModel>> getForecastByCity(String city) async {
-    final url = ApiConfig.forecastByCity(city);
+    final url =
+        '${ApiConfig.baseUrl}/forecast?q=${Uri.encodeComponent(city)}&appid=${ApiConfig.apiKey}&units=metric';
     final response = await _get(url, cityName: city);
     return _parseForecast(response);
   }
@@ -54,7 +58,7 @@ class WeatherService {
   }
 
   /// Parses the forecast API response into daily summaries
-  /// The /forecast endpoint returns 40 entries (one per 3 hours, 5 days).
+  /// The /forecast endpoint returns 40 entries, one per 3 hours
   List<ForecastDayModel> _parseForecast(Map<String, dynamic> json) {
     final forecastResponse = ForecastResponseModel.fromJson(json);
     final entries = forecastResponse.list;
