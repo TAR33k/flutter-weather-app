@@ -47,7 +47,7 @@ class ForecastCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   '${forecast.minTemp.round()}°',
-                  style: textTheme.bodyMedium,
+                  style: textTheme.bodyLarge,
                 ),
               ],
             ),

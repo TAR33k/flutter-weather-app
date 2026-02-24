@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="63569e12-d05e-4fda-a90a-71001bdff2df" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/city_detail_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/city_detail_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forecast_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forecast_card.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +59,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "feature/search-screen",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Korisnik/Desktop/flutter-weather-app",
     "show.migrate.to.gradle.popup": "false"
