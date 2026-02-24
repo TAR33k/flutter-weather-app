@@ -43,7 +43,9 @@ class WeatherService {
 
   // Helpers
   Future<Map<String, dynamic>> _get(String url, {String? cityName}) async {
-    final response = await http.get(Uri.parse(url));
+    final response = await http
+        .get(Uri.parse(url))
+        .timeout(const Duration(seconds: 10));
 
     switch (response.statusCode) {
       case 200:

@@ -3,28 +3,28 @@ import 'package:flutter/material.dart';
 class AppTheme {
   const AppTheme._();
 
-  static const Color primaryColor = Color(0xFF1565C0);
-  static const Color primaryLight = Color(0xFF1E88E5);
-  static const Color backgroundColor = Color(0xFFF8F9FA);
-  static const Color surfaceColor = Color(0xFFFFFFFF);
-  static const Color textPrimary = Color(0xFF1C1B1F);
-  static const Color textSecondary = Color(0xFF6B7280);
-  static const Color errorColor = Color(0xFFB00020);
-  static const Color dividerColor = Color(0xFFE5E7EB);
+  static const Color primaryColor = Color.fromRGBO(10, 38, 71, 1);
+  static const Color primaryLight = Color.fromRGBO(20, 66, 114, 1);
+  static const Color backgroundColor = Color.fromRGBO(32, 82, 149, 1);
+  static const Color surfaceColor = Color.fromRGBO(44, 116, 179, 1);
+  static const Color textPrimary = Color.fromRGBO(255, 255, 255, 1);
+  static const Color textSecondary = Color.fromRGBO(255, 255, 255, 0.8);
+  static const Color errorColor = Color.fromRGBO(176, 0, 32, 1);
+  static const Color dividerColor = Color.fromRGBO(255, 255, 255, 1);
 
   static ThemeData get theme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
-        brightness: Brightness.light,
-        surface: backgroundColor,
+        brightness: Brightness.dark,
+        surface: surfaceColor,
         error: errorColor,
       ),
-      scaffoldBackgroundColor: backgroundColor,
+      scaffoldBackgroundColor: surfaceColor,
 
       appBarTheme: const AppBarTheme(
-        backgroundColor: backgroundColor,
+        backgroundColor: primaryColor,
         foregroundColor: textPrimary,
         elevation: 0,
         scrolledUnderElevation: 0,

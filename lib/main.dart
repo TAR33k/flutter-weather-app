@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/screens/home_screen.dart';
 import 'config/app_theme.dart';
 import 'providers/city_weather_provider.dart';
 import 'providers/location_weather_provider.dart';
@@ -31,7 +32,8 @@ class WeatherApp extends StatelessWidget {
         title: 'Weather App',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.theme,
-        home: const Scaffold(body: Center(child: Text('Weather App'))),
+        initialRoute: "/",
+        routes: {"/": (context) => const HomeScreen()},
       ),
     );
   }

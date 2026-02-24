@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:geolocator/geolocator.dart'
     hide LocationServiceDisabledException;
 import '../models/weather_exception.dart';
@@ -22,10 +23,15 @@ class LocationService {
       throw const LocationPermissionPermanentlyDeniedException();
     }
 
-    return Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.medium,
-      ),
-    );
+    try {
+      return await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+          timeLimit: Duration(seconds: 10),
+        ),
+      );
+    } on TimeoutException {
+      throw const LocationServiceDisabledException();
+    }
   }
 }
