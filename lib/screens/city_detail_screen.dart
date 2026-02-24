@@ -52,7 +52,7 @@ class CityDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   CurrentConditionsCard(weather: weather),
-                  const SizedBox(height: AppConstants.spacingSm),
+                  const SizedBox(height: AppConstants.spacingXl),
                   StatsRow(weather: weather),
                   const SizedBox(height: AppConstants.spacingXl),
                   FiveDayForecast(forecast: forecast),
@@ -61,38 +61,49 @@ class CityDetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppConstants.spacingMd,
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Details',
-                          style: Theme.of(context).textTheme.titleMedium,
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(AppConstants.spacingLg),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Details',
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.titleMedium,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.info_outline_rounded,
+                                  size: AppConstants.iconSm,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: AppConstants.spacingSm),
+                            const Divider(height: 1),
+                            const SizedBox(height: AppConstants.spacingSm),
+                            _WeatherDetailRow(
+                              label: 'Pressure',
+                              value: '${weather.pressure} hPa',
+                            ),
+                            _WeatherDetailRow(
+                              label: 'Visibility',
+                              value: '$visibilityKm km',
+                            ),
+                            _WeatherDetailRow(
+                              label: 'Wind Speed',
+                              value: '${weather.windSpeed} m/s',
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: AppConstants.spacingSm),
-                        const Divider(height: 1),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: AppConstants.spacingSm),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppConstants.spacingMd,
-                    ),
-                    child: Column(
-                      children: [
-                        _WeatherDetailRow(
-                          label: 'Pressure',
-                          value: '${weather.pressure} hPa',
-                        ),
-                        _WeatherDetailRow(
-                          label: 'Visibility',
-                          value: '$visibilityKm km',
-                        ),
-                        _WeatherDetailRow(
-                          label: 'Wind Speed',
-                          value: '${weather.windSpeed} m/s',
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
@@ -121,11 +132,12 @@ class _WeatherDetailRow extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(label, style: textTheme.bodyLarge),
+              Text(label, style: textTheme.bodyMedium),
               Text(value, style: textTheme.bodyLarge),
             ],
           ),
         ),
+        const Divider(height: 1),
       ],
     );
   }

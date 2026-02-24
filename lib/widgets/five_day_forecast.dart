@@ -12,19 +12,34 @@ class FiveDayForecast extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppConstants.spacingMd),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '5-Day Forecast',
-            style: Theme.of(context).textTheme.titleMedium,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(AppConstants.spacingLg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      '5-Day Forecast',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ),
+                  Icon(
+                    Icons.calendar_month_rounded,
+                    color: Theme.of(context).colorScheme.onSurface,
+                    size: AppConstants.iconSm,
+                  ),
+                ],
+              ),
+              const SizedBox(height: AppConstants.spacingSm),
+              const Divider(height: 1),
+              const SizedBox(height: AppConstants.spacingSm),
+              ...forecast.map((day) => ForecastCard(forecast: day)),
+            ],
           ),
-          const SizedBox(height: AppConstants.spacingSm),
-          const Divider(height: 1),
-          const SizedBox(height: AppConstants.spacingXs),
-
-          ...forecast.map((day) => ForecastCard(forecast: day)),
-        ],
+        ),
       ),
     );
   }

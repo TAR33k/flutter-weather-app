@@ -66,13 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Padding(
               padding: const EdgeInsets.only(
                 bottom: AppConstants.spacingXl,
-                top: AppConstants.spacingXl,
+                top: AppConstants.spacingMd,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   CurrentConditionsCard(weather: provider.currentWeather!),
-                  const SizedBox(height: AppConstants.spacingSm),
+                  const SizedBox(height: AppConstants.spacingXl),
                   StatsRow(weather: provider.currentWeather!),
                   const SizedBox(height: AppConstants.spacingXl),
                   FiveDayForecast(forecast: provider.forecast),
