@@ -18,11 +18,6 @@ class WeatherApiException extends WeatherException {
     : super('Weather service returned an unexpected error ($statusCode).');
 }
 
-class NetworkException extends WeatherException {
-  const NetworkException()
-    : super('No internet connection. Please check your network and try again.');
-}
-
 class LocationServiceDisabledException extends WeatherException {
   const LocationServiceDisabledException()
     : super(
